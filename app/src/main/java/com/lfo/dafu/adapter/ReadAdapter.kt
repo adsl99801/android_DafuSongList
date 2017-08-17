@@ -33,8 +33,8 @@ class ReadAdapter : RecyclerView.Adapter<ReadAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun setValue(entity: ReadVo) {
-            itemView.tvNum.setText(entity.number)
-            itemView.tvName.setText(entity.name)
+            itemView.etNum.setText(entity.number)
+            itemView.etName.setText(entity.name)
 
         }
     }

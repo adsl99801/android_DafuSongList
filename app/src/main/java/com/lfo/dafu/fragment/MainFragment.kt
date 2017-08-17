@@ -1,10 +1,11 @@
 package com.lfo.dafu.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.lfo.dafu.BaseFragment
 import com.lfo.dafu.R
 import com.lfo.dafu.tool.FragmentHandler
 import kotlinx.android.synthetic.main.fragment_mainfragment.*
@@ -12,7 +13,12 @@ import kotlinx.android.synthetic.main.fragment_mainfragment.*
 /**
  * Created by home on 2017/8/15.
  */
-class MainFragment:Fragment() {
+class MainFragment: BaseFragment() {
+    override fun setToolBar(toolBar: Toolbar) {
+        toolBar.removeAllViews()
+        LayoutInflater.from(context).inflate(R.layout.toolbar_onlytitle, toolBar,true)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }

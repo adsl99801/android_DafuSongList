@@ -3,4 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="tvNumTitle">曲號</string>
     <string name="tvNameTitle">名稱</string>
+    <string name="addsong">新增歌曲</string>
+    <string name="songlist">個人歌單</string>
+
 </resources>

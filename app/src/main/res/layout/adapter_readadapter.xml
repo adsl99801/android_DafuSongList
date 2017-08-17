@@ -11,7 +11,7 @@
 
         <TextView
             style="@style/readText"
-            android:id="@+id/tvNum"
+            android:id="@+id/etNum"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -20,7 +20,7 @@
 
         <TextView
             style="@style/readText"
-            android:id="@+id/tvName"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

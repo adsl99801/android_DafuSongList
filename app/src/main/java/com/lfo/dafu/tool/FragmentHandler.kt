@@ -93,4 +93,39 @@ class FragmentHandler private constructor(){
 //        DrawerTool.instance.setIndicatorImageAsMenu()
 //        sendTrack(toFragmentTag)
     }
+
+    fun backKeyPressd(): Boolean {
+        var bool = false
+        var count = recentFragmentManager.backStackEntryCount
+
+        if (count > 1) {
+            try {
+                recentFragmentManager.popBackStack()
+                return true
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        count = recentFragmentManager.backStackEntryCount
+//        if (count <= 2) {
+//            DrawerTool.instance.setIndicatorImageAsMenu()
+//        } else {
+//            DrawerTool.instance.setIndicatorImageAsBack()
+//        }
+//
+//        if (DrawerTool.instance.getDrawer() == null) {
+//            KLog.i("DrawerTool.instance.getDrawer() == null)")
+//            return false
+//        }
+//        if (count <= 1) {
+//            if (!DrawerTool.instance.getDrawer().isDrawerOpen()) {
+//                DrawerTool.instance.getDrawer().openDrawer()
+//                bool = true
+//            }
+//        }
+
+        return bool
+
+
+    }
 }

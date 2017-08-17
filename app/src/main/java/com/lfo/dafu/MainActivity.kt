@@ -2,14 +2,14 @@ package com.lfo.dafu
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.SearchView
-import android.view.Menu
 import com.lfo.dafu.fragment.MainFragment
 import com.lfo.dafu.tool.FragmentHandler
 import com.lfo.dafu.vo.event.FBAddEvent
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import org.simple.eventbus.EventBus
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,34 +40,27 @@ class MainActivity : AppCompatActivity() {
             EventBus.getDefault().post(FBAddEvent())
 
         }
-
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbar.title=""
+        toolbar.subtitle=""
         FragmentHandler.instance.prepare(R.id.container,supportFragmentManager)
         FragmentHandler.instance.to(MainFragment())
 //        // Example of a call to a native method
 //        sample_text.text = stringFromJNI()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+    override fun onBackPressed() {
+        myBackPress()
 
-        val myActionMenuItem=menu.findItem(R.id.action_search)
-        var searchView = myActionMenuItem.actionView as android.support.v7.widget.SearchView
-        searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String): Boolean {
-                Logger.i("query:"+query)
-                if (!searchView.isIconified()) {
-                    searchView.setIconified(true)
-                }
-                myActionMenuItem.collapseActionView()
-                return false
-            }
+    }
 
-            override fun onQueryTextChange(s: String): Boolean {
-                // UserFeedback.show( "SearchOnQueryTextChanged: " + s);
-                return false
-            }
-        })
-        return true
+    fun myBackPress() {
+        val consume = FragmentHandler.instance.backKeyPressd()
+        if (consume) {
+            return
+        }
+        finish()
+
     }
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        // Inflate the menu; this adds items to the action bar if it is present.
