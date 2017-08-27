@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.lfo.dafu.BaseFragment
 import com.lfo.dafu.R
+import com.lfo.dafu.fragment.readList.ReadListFragment
 import com.lfo.dafu.tool.FragmentHandler
 import kotlinx.android.synthetic.main.fragment_mainfragment.*
 

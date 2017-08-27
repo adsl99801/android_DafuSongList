@@ -7,20 +7,17 @@ import io.realm.annotations.PrimaryKey
 import java.util.*
 
 
-
-
-
 /**
  * Created by home on 2017/8/13.
  */
-open class Song : RealmObject() {
+open class Song : RealmObject(){
     @PrimaryKey
-    var id = UUID.randomUUID().toString()
+    var id :String= UUID.randomUUID().toString()
     var number :String=""
     var name:String=""
     @LinkingObjects("songs")
     val singers: RealmResults<Singer>? = null
     @LinkingObjects("songs")
     val machines: RealmResults<Machine>? = null
-
 }
+
