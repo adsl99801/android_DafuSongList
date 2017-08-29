@@ -5,6 +5,7 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import com.lfo.dafu.BaseFragment
 import com.lfo.dafu.R
 import com.lfo.dafu.dao.SongDao
@@ -12,10 +13,14 @@ import com.lfo.dafu.tool.FragmentHandler
 import kotlinx.android.synthetic.main.fragment_viewfragment.*
 import kotlinx.android.synthetic.main.toolbar_viewfrgment.view.*
 
+
+
 /**
  * Created by home on 2017/8/15.
  */
 class ViewFragment :BaseFragment(),Contract.IView{
+
+    val SongIdIndex:String="SongIdIndex"
     override fun setToolBar(toolbar: Toolbar) {
         toolbar.removeAllViews()
         var view=LayoutInflater.from(context).inflate(R.layout.toolbar_viewfrgment, toolbar,true)
@@ -31,9 +36,13 @@ class ViewFragment :BaseFragment(),Contract.IView{
     enum class Type{
         View,Edit,New
     }
-    fun  newInstance(type : Type): ViewFragment {
+
+    fun  newInstance(type : Type,songId:String): ViewFragment {
         var fragment = ViewFragment().apply {
-            arguments=Bundle().apply { putInt(TypeIndex,type.ordinal)}
+            arguments=Bundle().apply {
+                putInt(TypeIndex,type.ordinal)
+                putString(SongIdIndex,songId)
+            }
         }
         return  fragment
     }
@@ -41,11 +50,11 @@ class ViewFragment :BaseFragment(),Contract.IView{
     override fun genPresenter() {
         var type=arguments.getInt(TypeIndex,0)
         presenter=when(type){
-            Type.View.ordinal-> ViewPresenter(this, SongDao())
-            Type.Edit.ordinal-> ViewPresenter(this, SongDao())
-            Type.New.ordinal-> ViewPresenter(this, SongDao())
+            Type.View.ordinal-> BasePresenter(this, SongDao())
+            Type.Edit.ordinal-> EditPresenter(this, SongDao())
+            Type.New.ordinal-> BasePresenter(this, SongDao())
             else->{
-                ViewPresenter(this, SongDao())
+                BasePresenter(this, SongDao())
 
             }
         }
@@ -56,7 +65,7 @@ class ViewFragment :BaseFragment(),Contract.IView{
         val name=etName.text?.toString()?:""
         val singer=etSinger.text?.toString()?:""
         val machine=etMachine.text?.toString()?:""
-        return  Contract.Model(num,name,singer,machine)
+        return  Contract.Model(arguments.getString(SongIdIndex),num,name,singer,machine)
     }
 
 
@@ -67,10 +76,13 @@ class ViewFragment :BaseFragment(),Contract.IView{
 
     override fun onResume() {
         super.onResume()
+        setEtMachine()
+        setEtSinger()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_viewfragment, container, false)
+        return  inflater.inflate(R.layout.fragment_viewfragment, container, false)
+
     }
 
     override fun onDestroyView() {
@@ -80,4 +92,18 @@ class ViewFragment :BaseFragment(),Contract.IView{
     override fun onDestroy() {
         super.onDestroy()
     }
+    override fun setEtSinger() {
+
+        var adapter =  ArrayAdapter<String>(context,
+                android.R.layout.simple_dropdown_item_1line, presenter.genSingerStrs())
+        etSinger.setAdapter(adapter)
+    }
+
+
+    override fun setEtMachine() {
+        var adapter =  ArrayAdapter<String>(context,
+                android.R.layout.simple_dropdown_item_1line, presenter.genMachineStrs())
+        etMachine.setAdapter(adapter)
+    }
+
 }

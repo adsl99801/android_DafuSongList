@@ -1,8 +1,6 @@
 package com.lfo.dafu.dao
 
 import io.realm.RealmObject
-import io.realm.RealmResults
-import io.realm.annotations.LinkingObjects
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
@@ -15,9 +13,7 @@ open class Song : RealmObject(){
     var id :String= UUID.randomUUID().toString()
     var number :String=""
     var name:String=""
-    @LinkingObjects("songs")
-    val singers: RealmResults<Singer>? = null
-    @LinkingObjects("songs")
-    val machines: RealmResults<Machine>? = null
+    var singerId:String=""
+    var machineId:String=""
 }
 

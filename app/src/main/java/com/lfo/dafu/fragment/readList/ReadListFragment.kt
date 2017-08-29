@@ -28,7 +28,7 @@ class ReadListFragment : BaseFragment(),Contract.IView{
     override fun setToolBar(toolbar: Toolbar) {
         toolbar.removeAllViews()
         var view=LayoutInflater.from(context).inflate(R.layout.toolbar_readlistfragment, toolbar,true)
-        view.igAdd.setOnClickListener({ FragmentHandler.instance.toByHideFrom(ViewFragment().newInstance(ViewFragment.Type.New))})
+        view.igAdd.setOnClickListener({ FragmentHandler.instance.toByHideFrom(ViewFragment().newInstance(ViewFragment.Type.New,""))})
     }
 
 
@@ -75,6 +75,6 @@ class ReadListFragment : BaseFragment(),Contract.IView{
 
     @Subscriber
     private fun FBAddEvent(FBAddEvent: FBAddEvent){
-        FragmentHandler.instance.toByHideFrom(ViewFragment().newInstance(ViewFragment.Type.New))
+        FragmentHandler.instance.toByHideFrom(ViewFragment().newInstance(ViewFragment.Type.New,""))
     }
 }

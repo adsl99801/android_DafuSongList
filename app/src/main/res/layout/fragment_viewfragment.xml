@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -68,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvTxName"
         app:layout_constraintBottom_toTopOf="@id/tvTxMachine"
         />
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/etSinger"
         style="@style/readText"
         android:layout_width="0dp"
@@ -90,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvTxSinger"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/etMachine"
         style="@style/readText"
         android:layout_width="0dp"
