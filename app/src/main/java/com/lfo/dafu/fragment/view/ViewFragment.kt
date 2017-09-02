@@ -50,11 +50,11 @@ class ViewFragment :BaseFragment(),Contract.IView{
     override fun genPresenter() {
         var type=arguments.getInt(TypeIndex,0)
         presenter=when(type){
-            Type.View.ordinal-> BasePresenter(this, SongDao())
+            Type.View.ordinal-> AddPresenter(this, SongDao())
             Type.Edit.ordinal-> EditPresenter(this, SongDao())
-            Type.New.ordinal-> BasePresenter(this, SongDao())
+            Type.New.ordinal-> AddPresenter(this, SongDao())
             else->{
-                BasePresenter(this, SongDao())
+                AddPresenter(this, SongDao())
 
             }
         }

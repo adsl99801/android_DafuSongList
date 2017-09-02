@@ -5,7 +5,7 @@ import com.lfo.dafu.dao.SongDao
 /**
  * Created by home on 2017/8/24.
  */
-open class BasePresenter(var view:Contract.IView, var dao: SongDao)  :Contract.IPresenter {
+open class AddPresenter(var view:Contract.IView, var dao: SongDao)  :Contract.IPresenter {
     override fun genSingerStrs(): List<String> {
         return dao.allSigerStrs()
     }
@@ -16,7 +16,7 @@ open class BasePresenter(var view:Contract.IView, var dao: SongDao)  :Contract.I
 
     override fun clickRightIcon() {
         var model=view.getModel()
-        dao.saveSond(model)
+        dao.saveSong(model)
     }
 
 

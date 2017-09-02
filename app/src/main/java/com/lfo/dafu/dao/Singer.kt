@@ -1,19 +1,14 @@
 package com.lfo.dafu.dao
 
-import io.realm.RealmList
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
-import java.util.*
+import com.raizlabs.android.dbflow.annotation.Column
+import com.raizlabs.android.dbflow.annotation.PrimaryKey
+import com.raizlabs.android.dbflow.annotation.Table
 
 
 /**
  * Created by home on 2017/8/13.
  */
-open class Singer : RealmObject() {
-    @PrimaryKey
-    var id = UUID.randomUUID().toString()
-    var name:String=""
-    var songs: RealmList<Song> = RealmList()
 
 
-}
+@Table(database = MDatabase::class)
+data class Singer(@PrimaryKey(autoincrement = true)  var id: Long = 0, @Column var name: String="")
